@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#f17801">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="description" content="An app to control LEGO Power Functions via BLE with your smartphone">
+
+        <title>Teleguide</title>
+
+        <link rel="manifest" href="manifest.json">
+        <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+        <link rel="shortcut icon" href="icons/favicon.ico">
+
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css" rel="stylesheet">
+        <link href="css/styles.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="app">
+            <div class="toolbar">
+                <div id="device-name" class="name">Teleguide</div>
+                <div class="buttons">
+                    <button id="connect" type="button" aria-label="Connect">
+                        <i class="material-icons">bluetooth_searching</i>
+                    </button>
+                    <button id="disconnect" type="button" aria-label="Disconnect">
+                        <i class="material-icons">bluetooth_disabled</i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="terminal" class="terminal"></div>
+        </div>
+
+        <script src="js/lib/kotlin.js"></script>
+        <script src="js/teleguide-web.js"></script>
+        <script src="js/companion.js" data-service-worker="sw.js"></script>
+    </body>
+</html>
