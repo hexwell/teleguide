@@ -5,6 +5,7 @@
       <w>beforeend</w>
       <w>browserconfig</w>
       <w>characteristicvaluechanged</w>
+      <w>coroutine</w>
       <w>deviceorientation</w>
       <w>gattserverdisconnected</w>
       <w>lenght</w>

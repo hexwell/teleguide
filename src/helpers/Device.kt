@@ -1,3 +1,6 @@
+package helpers
+
+import externals.*
 import org.w3c.dom.events.Event
 import org.w3c.dom.events.EventListener
 import kotlin.browser.window
@@ -9,16 +12,6 @@ suspend fun <T> Promise<T>.await(): T = suspendCoroutine { cont ->
 }
 
 class Device {
-    companion object {
-        private const val RECONNECTION_ATTEMPTS = 5
-        private const val RECONNECTION_BASE_DELAY = 1000
-
-        private const val SERVICE_UUID = 0xDFB0
-        private const val CHARACTERISTIC_UUID = 0xDFB1
-
-        private const val MAX_CHARACTERISTIC_VALUE_LENGHT = 20
-    }
-
     private lateinit var device: BluetoothDevice
     private lateinit var characteristic: BluetoothRemoteGATTCharacteristic
     private val disconnectionListener = EventListener(this::onDisconnected)
@@ -32,11 +25,15 @@ class Device {
     private suspend fun request() {
         this.log("Requesting device...")
 
-        this.device = (window.navigator as Navigator).bluetooth.requestDevice(RequestDeviceOptions(
-                filters = arrayOf(BluetoothScanFilters(
-                        services = arrayOf(Device.SERVICE_UUID)
-                ))
-        )).await()
+        this.device = (window.navigator as Navigator).bluetooth.requestDevice(
+            RequestDeviceOptions(
+                filters = arrayOf(
+                    BluetoothScanFilters(
+                        services = arrayOf(SERVICE_UUID)
+                    )
+                )
+            )
+        ).await()
 
         device.addEventListener(GATTSERVERDISCONNECTED, this.disconnectionListener)
     }
@@ -45,7 +42,7 @@ class Device {
         this.device.gatt!!.connect().await()
 
         val service: BluetoothRemoteGATTService =
-                this.device.gatt!!.getPrimaryService(Device.SERVICE_UUID).await()
+            this.device.gatt!!.getPrimaryService(Device.SERVICE_UUID).await()
         this.characteristic =
                 service.getCharacteristic(Device.CHARACTERISTIC_UUID).await()
 
@@ -93,5 +90,15 @@ class Device {
                 delay(Device.RECONNECTION_BASE_DELAY * attempt)
             }
         }
+    }
+
+    companion object {
+        private const val RECONNECTION_ATTEMPTS = 5
+        private const val RECONNECTION_BASE_DELAY = 1000
+
+        private const val SERVICE_UUID = 0xDFB0
+        private const val CHARACTERISTIC_UUID = 0xDFB1
+
+        private const val MAX_CHARACTERISTIC_VALUE_LENGHT = 20
     }
 }

@@ -1,3 +1,9 @@
+package net.hexwell.teleguide
+
+import externals.DEVICEORIENTATION
+import externals.DeviceOrientationEvent
+import helpers.Device
+import helpers.launch
 import org.w3c.dom.HTMLButtonElement
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLElement
@@ -22,8 +28,8 @@ fun scrollElement(element: HTMLElement) {
 
 fun logToTerminal(message: String, type: String = "") {
     terminalContainer.insertAdjacentHTML(
-            "beforeend",
-            "<div class=\"$type\">$message</div>"
+        "beforeend",
+        "<div class=\"$type\">$message</div>"
     )
 
     if (isTerminalAutoscrolling)
@@ -85,7 +91,7 @@ fun main(args: Array<String>) {
 
     terminalContainer.addEventListener("scroll", {
         val scrollTopOffset: Int =
-                terminalContainer.scrollHeight - terminalContainer.offsetHeight - terminalAutoScrollingLimit
+            terminalContainer.scrollHeight - terminalContainer.offsetHeight - terminalAutoScrollingLimit
 
         isTerminalAutoscrolling = (scrollTopOffset < terminalContainer.scrollTop)
     })

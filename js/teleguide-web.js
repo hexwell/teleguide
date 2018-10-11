@@ -40,6 +40,8 @@ this['teleguide-web'] = function (_, Kotlin) {
     simpleName: 'RequestDeviceOptions',
     interfaces: []
   };
+  var GATTSERVERDISCONNECTED;
+  var DEVICEORIENTATION;
   function launch$ObjectLiteral() {
   }
   Object.defineProperty(launch$ObjectLiteral.prototype, 'context', {
@@ -212,8 +214,8 @@ this['teleguide-web'] = function (_, Kotlin) {
   };
   function Device() {
     Device$Companion_getInstance();
-    this.device_krwogk$_0 = this.device_krwogk$_0;
-    this.characteristic_b52mwp$_0 = this.characteristic_b52mwp$_0;
+    this.device_1q8x8r$_0 = this.device_1q8x8r$_0;
+    this.characteristic_fjn5sg$_0 = this.characteristic_fjn5sg$_0;
     this.disconnectionListener_0 = EventListener(getCallableRef('onDisconnected', function ($receiver, event) {
       return $receiver.onDisconnected_0(event), Unit;
     }.bind(null, this)));
@@ -241,22 +243,22 @@ this['teleguide-web'] = function (_, Kotlin) {
   }
   Object.defineProperty(Device.prototype, 'device_0', {
     get: function () {
-      if (this.device_krwogk$_0 == null)
+      if (this.device_1q8x8r$_0 == null)
         return throwUPAE('device');
-      return this.device_krwogk$_0;
+      return this.device_1q8x8r$_0;
     },
     set: function (device) {
-      this.device_krwogk$_0 = device;
+      this.device_1q8x8r$_0 = device;
     }
   });
   Object.defineProperty(Device.prototype, 'characteristic_0', {
     get: function () {
-      if (this.characteristic_b52mwp$_0 == null)
+      if (this.characteristic_fjn5sg$_0 == null)
         return throwUPAE('characteristic');
-      return this.characteristic_b52mwp$_0;
+      return this.characteristic_fjn5sg$_0;
     },
     set: function (characteristic) {
-      this.characteristic_b52mwp$_0 = characteristic;
+      this.characteristic_fjn5sg$_0 = characteristic;
     }
   });
   Object.defineProperty(Device.prototype, 'name', {
@@ -623,8 +625,6 @@ this['teleguide-web'] = function (_, Kotlin) {
     simpleName: 'Device',
     interfaces: []
   };
-  var GATTSERVERDISCONNECTED;
-  var DEVICEORIENTATION;
   var deviceNameLabel;
   var connectButton;
   var disconnectButton;
@@ -829,56 +829,61 @@ this['teleguide-web'] = function (_, Kotlin) {
     terminalContainer.addEventListener('scroll', main$lambda_2);
     window.addEventListener(DEVICEORIENTATION, main$lambda_3);
   }
-  _.BluetoothScanFilters = BluetoothScanFilters;
-  _.RequestDeviceOptions = RequestDeviceOptions;
-  _.launch_g2bo5h$ = launch;
-  _.delay_za3lpa$ = delay;
-  _.await_t11jrl$ = await_0;
-  Object.defineProperty(Device, 'Companion', {
-    get: Device$Companion_getInstance
-  });
-  _.Device = Device;
-  Object.defineProperty(_, 'GATTSERVERDISCONNECTED', {
+  var package$externals = _.externals || (_.externals = {});
+  package$externals.BluetoothScanFilters = BluetoothScanFilters;
+  package$externals.RequestDeviceOptions = RequestDeviceOptions;
+  Object.defineProperty(package$externals, 'GATTSERVERDISCONNECTED', {
     get: function () {
       return GATTSERVERDISCONNECTED;
     }
   });
-  Object.defineProperty(_, 'DEVICEORIENTATION', {
+  Object.defineProperty(package$externals, 'DEVICEORIENTATION', {
     get: function () {
       return DEVICEORIENTATION;
     }
   });
-  Object.defineProperty(_, 'deviceNameLabel', {
+  var package$helpers = _.helpers || (_.helpers = {});
+  package$helpers.launch_g2bo5h$ = launch;
+  package$helpers.delay_za3lpa$ = delay;
+  package$helpers.await_t11jrl$ = await_0;
+  Object.defineProperty(Device, 'Companion', {
+    get: Device$Companion_getInstance
+  });
+  package$helpers.Device = Device;
+  var package$net = _.net || (_.net = {});
+  var package$hexwell = package$net.hexwell || (package$net.hexwell = {});
+  var package$teleguide = package$hexwell.teleguide || (package$hexwell.teleguide = {});
+  Object.defineProperty(package$teleguide, 'deviceNameLabel', {
     get: function () {
       return deviceNameLabel;
     }
   });
-  Object.defineProperty(_, 'connectButton', {
+  Object.defineProperty(package$teleguide, 'connectButton', {
     get: function () {
       return connectButton;
     }
   });
-  Object.defineProperty(_, 'disconnectButton', {
+  Object.defineProperty(package$teleguide, 'disconnectButton', {
     get: function () {
       return disconnectButton;
     }
   });
-  Object.defineProperty(_, 'terminalContainer', {
+  Object.defineProperty(package$teleguide, 'terminalContainer', {
     get: function () {
       return terminalContainer;
     }
   });
-  Object.defineProperty(_, 'defaultDeviceName', {
+  Object.defineProperty(package$teleguide, 'defaultDeviceName', {
     get: function () {
       return defaultDeviceName;
     }
   });
-  Object.defineProperty(_, 'terminalAutoScrollingLimit', {
+  Object.defineProperty(package$teleguide, 'terminalAutoScrollingLimit', {
     get: function () {
       return terminalAutoScrollingLimit;
     }
   });
-  Object.defineProperty(_, 'isTerminalAutoscrolling', {
+  Object.defineProperty(package$teleguide, 'isTerminalAutoscrolling', {
     get: function () {
       return isTerminalAutoscrolling;
     },
@@ -886,29 +891,29 @@ this['teleguide-web'] = function (_, Kotlin) {
       isTerminalAutoscrolling = value;
     }
   });
-  _.scrollElement_lt8gi4$ = scrollElement;
-  _.logToTerminal_puj7f4$ = logToTerminal;
-  Object.defineProperty(_, 'device', {
+  package$teleguide.scrollElement_lt8gi4$ = scrollElement;
+  package$teleguide.logToTerminal_puj7f4$ = logToTerminal;
+  Object.defineProperty(package$teleguide, 'device', {
     get: function () {
       return device;
     }
   });
-  Object.defineProperty(_, 'multiplier', {
+  Object.defineProperty(package$teleguide, 'multiplier', {
     get: function () {
       return multiplier;
     }
   });
-  Object.defineProperty(_, 'baseBeta', {
+  Object.defineProperty(package$teleguide, 'baseBeta', {
     get: function () {
       return baseBeta;
     }
   });
-  Object.defineProperty(_, 'baseGamma', {
+  Object.defineProperty(package$teleguide, 'baseGamma', {
     get: function () {
       return baseGamma;
     }
   });
-  Object.defineProperty(_, 'rawBeta', {
+  Object.defineProperty(package$teleguide, 'rawBeta', {
     get: function () {
       return rawBeta;
     },
@@ -916,7 +921,7 @@ this['teleguide-web'] = function (_, Kotlin) {
       rawBeta = value;
     }
   });
-  Object.defineProperty(_, 'rawGamma', {
+  Object.defineProperty(package$teleguide, 'rawGamma', {
     get: function () {
       return rawGamma;
     },
@@ -924,13 +929,13 @@ this['teleguide-web'] = function (_, Kotlin) {
       rawGamma = value;
     }
   });
-  Object.defineProperty(_, 'beta', {
+  Object.defineProperty(package$teleguide, 'beta', {
     get: get_beta
   });
-  Object.defineProperty(_, 'gamma', {
+  Object.defineProperty(package$teleguide, 'gamma', {
     get: get_gamma
   });
-  Object.defineProperty(_, 'interval', {
+  Object.defineProperty(package$teleguide, 'interval', {
     get: function () {
       return interval;
     },
@@ -938,7 +943,7 @@ this['teleguide-web'] = function (_, Kotlin) {
       interval = value;
     }
   });
-  _.main_kand9s$ = main;
+  package$teleguide.main_kand9s$ = main;
   GATTSERVERDISCONNECTED = 'gattserverdisconnected';
   DEVICEORIENTATION = 'deviceorientation';
   var tmp$, tmp$_0, tmp$_1, tmp$_2;
