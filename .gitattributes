@@ -1,2 +1,3 @@
+# Linguist
 js/** linguist-vendored
-js/teleguide-web.js linguist-vendored=false linguist-generated
+js/teleguide-web.js -linguist-vendored linguist-generated
