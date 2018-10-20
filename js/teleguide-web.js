@@ -11,13 +11,13 @@ this['teleguide-web'] = function (_, Kotlin) {
   var COROUTINE_SUSPENDED = Kotlin.kotlin.coroutines.experimental.intrinsics.COROUTINE_SUSPENDED;
   var CoroutineImpl = Kotlin.kotlin.coroutines.experimental.CoroutineImpl;
   var getCallableRef = Kotlin.getCallableRef;
-  var Kind_OBJECT = Kotlin.Kind.OBJECT;
   var throwUPAE = Kotlin.throwUPAE;
   var ensureNotNull = Kotlin.ensureNotNull;
   var throwCCE = Kotlin.throwCCE;
   var toString = Kotlin.toString;
   var chunked = Kotlin.kotlin.text.chunked_94bcnn$;
   var Throwable = Error;
+  var Kind_OBJECT = Kotlin.Kind.OBJECT;
   var EventListener = Kotlin.org.w3c.dom.events.EventListener_gbr1zf$;
   var numberToInt = Kotlin.numberToInt;
   var equals = Kotlin.equals;
@@ -214,51 +214,31 @@ this['teleguide-web'] = function (_, Kotlin) {
   };
   function Device() {
     Device$Companion_getInstance();
-    this.device_1q8x8r$_0 = this.device_1q8x8r$_0;
-    this.characteristic_fjn5sg$_0 = this.characteristic_fjn5sg$_0;
+    this.device_mn71w9$_0 = this.device_mn71w9$_0;
+    this.characteristic_k0aghq$_0 = this.characteristic_k0aghq$_0;
     this.disconnectionListener_0 = EventListener(getCallableRef('onDisconnected', function ($receiver, event) {
       return $receiver.onDisconnected_0(event), Unit;
     }.bind(null, this)));
     this.logger = Device$logger$lambda;
   }
-  function Device$Companion() {
-    Device$Companion_instance = this;
-    this.RECONNECTION_ATTEMPTS_0 = 5;
-    this.RECONNECTION_BASE_DELAY_0 = 1000;
-    this.SERVICE_UUID_0 = 57264;
-    this.CHARACTERISTIC_UUID_0 = 57265;
-    this.MAX_CHARACTERISTIC_VALUE_LENGHT_0 = 20;
-  }
-  Device$Companion.$metadata$ = {
-    kind: Kind_OBJECT,
-    simpleName: 'Companion',
-    interfaces: []
-  };
-  var Device$Companion_instance = null;
-  function Device$Companion_getInstance() {
-    if (Device$Companion_instance === null) {
-      new Device$Companion();
-    }
-    return Device$Companion_instance;
-  }
   Object.defineProperty(Device.prototype, 'device_0', {
     get: function () {
-      if (this.device_1q8x8r$_0 == null)
+      if (this.device_mn71w9$_0 == null)
         return throwUPAE('device');
-      return this.device_1q8x8r$_0;
+      return this.device_mn71w9$_0;
     },
     set: function (device) {
-      this.device_1q8x8r$_0 = device;
+      this.device_mn71w9$_0 = device;
     }
   });
   Object.defineProperty(Device.prototype, 'characteristic_0', {
     get: function () {
-      if (this.characteristic_fjn5sg$_0 == null)
+      if (this.characteristic_k0aghq$_0 == null)
         return throwUPAE('characteristic');
-      return this.characteristic_fjn5sg$_0;
+      return this.characteristic_k0aghq$_0;
     },
     set: function (characteristic) {
-      this.characteristic_fjn5sg$_0 = characteristic;
+      this.characteristic_k0aghq$_0 = characteristic;
     }
   });
   Object.defineProperty(Device.prototype, 'name', {
@@ -616,6 +596,26 @@ this['teleguide-web'] = function (_, Kotlin) {
   Device.prototype.onDisconnected_0 = function (event) {
     launch(Device$onDisconnected$lambda(this));
   };
+  function Device$Companion() {
+    Device$Companion_instance = this;
+    this.RECONNECTION_ATTEMPTS_0 = 5;
+    this.RECONNECTION_BASE_DELAY_0 = 1000;
+    this.SERVICE_UUID_0 = 57264;
+    this.CHARACTERISTIC_UUID_0 = 57265;
+    this.MAX_CHARACTERISTIC_VALUE_LENGHT_0 = 20;
+  }
+  Device$Companion.$metadata$ = {
+    kind: Kind_OBJECT,
+    simpleName: 'Companion',
+    interfaces: []
+  };
+  var Device$Companion_instance = null;
+  function Device$Companion_getInstance() {
+    if (Device$Companion_instance === null) {
+      new Device$Companion();
+    }
+    return Device$Companion_instance;
+  }
   function Device$logger$lambda(it) {
     console.log(it);
     return Unit;
@@ -829,7 +829,10 @@ this['teleguide-web'] = function (_, Kotlin) {
     terminalContainer.addEventListener('scroll', main$lambda_2);
     window.addEventListener(DEVICEORIENTATION, main$lambda_3);
   }
-  var package$externals = _.externals || (_.externals = {});
+  var package$net = _.net || (_.net = {});
+  var package$hexwell = package$net.hexwell || (package$net.hexwell = {});
+  var package$teleguide = package$hexwell.teleguide || (package$hexwell.teleguide = {});
+  var package$externals = package$teleguide.externals || (package$teleguide.externals = {});
   package$externals.BluetoothScanFilters = BluetoothScanFilters;
   package$externals.RequestDeviceOptions = RequestDeviceOptions;
   Object.defineProperty(package$externals, 'GATTSERVERDISCONNECTED', {
@@ -842,7 +845,7 @@ this['teleguide-web'] = function (_, Kotlin) {
       return DEVICEORIENTATION;
     }
   });
-  var package$helpers = _.helpers || (_.helpers = {});
+  var package$helpers = package$teleguide.helpers || (package$teleguide.helpers = {});
   package$helpers.launch_g2bo5h$ = launch;
   package$helpers.delay_za3lpa$ = delay;
   package$helpers.await_t11jrl$ = await_0;
@@ -850,9 +853,6 @@ this['teleguide-web'] = function (_, Kotlin) {
     get: Device$Companion_getInstance
   });
   package$helpers.Device = Device;
-  var package$net = _.net || (_.net = {});
-  var package$hexwell = package$net.hexwell || (package$net.hexwell = {});
-  var package$teleguide = package$hexwell.teleguide || (package$hexwell.teleguide = {});
   Object.defineProperty(package$teleguide, 'deviceNameLabel', {
     get: function () {
       return deviceNameLabel;

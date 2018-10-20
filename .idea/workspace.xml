@@ -5,17 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="55033814-4996-4eca-b7fa-af7c40497c7c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/ettor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/ettor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/teleguide-web.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/teleguide-web.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bluetooth.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/externals/Bluetooth.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/coroutines.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/Coroutines.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/device.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/Device.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/encoding.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/externals/Encoding.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/events.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/externals/Events.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/sw.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -54,19 +47,21 @@
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.13" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="3" />
-          <entry key="html" value="14" />
+          <entry key="gitignore" value="1" />
+          <entry key="html" value="16" />
           <entry key="iml" value="1" />
           <entry key="java" value="2" />
-          <entry key="js" value="21" />
-          <entry key="json" value="2" />
-          <entry key="kjsm" value="1" />
-          <entry key="kt" value="133" />
+          <entry key="js" value="29" />
+          <entry key="json" value="3" />
+          <entry key="kjsm" value="2" />
+          <entry key="kt" value="141" />
           <entry key="png" value="3" />
           <entry key="sql" value="1" />
         </counts>
@@ -74,35 +69,38 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="3" />
-          <entry key="HTML" value="14" />
+          <entry key="HTML" value="16" />
           <entry key="IDEA_MODULE" value="1" />
           <entry key="Image" value="3" />
           <entry key="JAVA" value="2" />
-          <entry key="JSON" value="2" />
-          <entry key="JavaScript" value="21" />
-          <entry key="KJSM" value="1" />
-          <entry key="Kotlin" value="133" />
+          <entry key="JSON" value="3" />
+          <entry key="JavaScript" value="29" />
+          <entry key="KJSM" value="2" />
+          <entry key="Kotlin" value="141" />
+          <entry key="PLAIN_TEXT" value="1" />
           <entry key="Scratch" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="1" />
-          <entry key="html" value="177" />
+          <entry key="html" value="180" />
           <entry key="java" value="61" />
           <entry key="js" value="68" />
           <entry key="json" value="29" />
-          <entry key="kt" value="17403" />
+          <entry key="kt" value="17416" />
+          <entry key="txt" value="56" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="1" />
-          <entry key="HTML" value="177" />
+          <entry key="HTML" value="180" />
           <entry key="JAVA" value="61" />
           <entry key="JSON" value="29" />
           <entry key="JavaScript" value="68" />
-          <entry key="Kotlin" value="17403" />
+          <entry key="Kotlin" value="17416" />
+          <entry key="PLAIN_TEXT" value="56" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts" />
@@ -135,7 +133,11 @@
       <find>innerConnect</find>
       <find>susp</find>
       <find>gatt!!.</find>
+      <find>sw.js</find>
     </findStrings>
+    <dirStrings>
+      <dir>C:\Users\ettor\Documents\Projects\teleguide-web</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -155,7 +157,6 @@
         <option value="$PROJECT_DIR$/js/companion.js" />
         <option value="$PROJECT_DIR$/js/sw-toolbox.js" />
         <option value="$PROJECT_DIR$/sw.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/manifest.json" />
         <option value="$PROJECT_DIR$/src/coroutines.kt" />
         <option value="$PROJECT_DIR$/src/device.kt" />
@@ -167,7 +168,12 @@
         <option value="$PROJECT_DIR$/src/net/hexwell/teleguide/helpers/device.kt" />
         <option value="$PROJECT_DIR$/src/net/hexwell/teleguide/main.kt" />
         <option value="$PROJECT_DIR$/src/externals/Bluetooth.kt" />
+        <option value="$PROJECT_DIR$/src/externals/Encoding.kt" />
+        <option value="$PROJECT_DIR$/src/externals/Events.kt" />
+        <option value="$PROJECT_DIR$/src/helpers/Coroutines.kt" />
         <option value="$PROJECT_DIR$/src/helpers/Device.kt" />
+        <option value="$PROJECT_DIR$/src/Main.kt" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -218,12 +224,17 @@
               <item name="teleguide-web" type="b2602c69:ProjectViewProjectNode" />
               <item name="teleguide-web" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="teleguide-web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="teleguide-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -247,15 +258,15 @@
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ettor\Documents\Projects\teleguide-web\icons" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ettor\Documents\Projects\teleguide-web\js" />
       <recent name="C:\Users\ettor\Documents\Projects\teleguide-web\src" />
       <recent name="C:\Users\ettor\Documents\Projects\teleguide-web\src\net\hexwell\teleguide" />
       <recent name="C:\Users\ettor\Documents\Projects\teleguide-web\src\net\hexwell\teleguide\helpers" />
       <recent name="C:\Users\ettor\Documents\Projects\teleguide-web\src\net\hexwell\teleguide\externals" />
-      <recent name="C:\Users\ettor\Documents\Projects\teleguide-web" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\ettor\Documents\Projects\teleguide-web\icons" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -282,11 +293,20 @@
       <workItem from="1539068250229" duration="629000" />
       <workItem from="1539276616243" duration="1703000" />
       <workItem from="1539278382142" duration="502000" />
+      <workItem from="1540023218015" duration="1620000" />
     </task>
+    <task id="LOCAL-00001" summary="Consistent package naming">
+      <created>1540024827457</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1540024827457</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107381000" />
+    <option name="totallyTimeSpent" value="109001000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -300,7 +320,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2647504" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2685325" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -371,6 +391,11 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="Consistent package naming" />
+    <option name="LAST_COMMIT_MESSAGE" value="Consistent package naming" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/bcee1be8-58d3-4f1a-a86c-73133f7f1186/console.sql">
@@ -474,23 +499,85 @@
     <entry file="file://$PROJECT_DIR$/icons/favicon-32x32.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/companion.js">
+    <entry file="file://$PROJECT_DIR$/CNAME">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/externals/Bluetooth.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        <state relative-caret-position="13">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/helpers/Device.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="39">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/helpers/Coroutines.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="30" selection-start-column="30" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/externals/Events.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="30" selection-start-column="30" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/externals/Encoding.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="30" selection-start-column="30" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$KOTLIN_BUNDLED$/lib/kotlin-stdlib-js.jar!/kotlin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="24748" column="5" lean-forward="true" selection-start-line="24748" selection-start-column="5" selection-end-line="24748" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/teleguide-web.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-11896">
+          <caret line="15" column="29" lean-forward="true" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/sw-toolbox.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
+        <state relative-caret-position="26">
           <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/companion.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/sw.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="559">
+        <state relative-caret-position="494">
           <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
         </state>
       </provider>
@@ -502,59 +589,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sw.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/teleguide-web.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10803">
-          <caret line="831" column="42" lean-forward="true" selection-start-line="831" selection-start-column="42" selection-end-line="831" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/externals/Bluetooth.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/externals/Encoding.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/externals/Events.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/helpers/Coroutines.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/helpers/Device.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/js/teleguide-web/net/hexwell/teleguide/externals/externals.kjsm">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1261">
-          <caret line="105" selection-start-line="105" selection-end-line="105" />
+          <caret line="105" lean-forward="true" selection-start-line="105" selection-end-line="105" />
         </state>
       </provider>
     </entry>
