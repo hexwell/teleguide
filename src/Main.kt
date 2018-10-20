@@ -1,9 +1,9 @@
 package net.hexwell.teleguide
 
-import externals.DEVICEORIENTATION
-import externals.DeviceOrientationEvent
-import helpers.Device
-import helpers.launch
+import net.hexwell.teleguide.externals.DEVICEORIENTATION
+import net.hexwell.teleguide.externals.DeviceOrientationEvent
+import net.hexwell.teleguide.helpers.Device
+import net.hexwell.teleguide.helpers.launch
 import org.w3c.dom.HTMLButtonElement
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLElement

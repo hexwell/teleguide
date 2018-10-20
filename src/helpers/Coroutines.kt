@@ -1,4 +1,4 @@
-package helpers
+package net.hexwell.teleguide.helpers
 
 import kotlin.browser.window
 import kotlin.coroutines.experimental.*

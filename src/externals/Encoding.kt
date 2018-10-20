@@ -1,4 +1,4 @@
-package externals
+package net.hexwell.teleguide.externals
 
 import org.khronos.webgl.Uint8Array
 

@@ -1,6 +1,6 @@
-package helpers
+package net.hexwell.teleguide.helpers
 
-import externals.*
+import net.hexwell.teleguide.externals.*
 import org.w3c.dom.events.Event
 import org.w3c.dom.events.EventListener
 import kotlin.browser.window
