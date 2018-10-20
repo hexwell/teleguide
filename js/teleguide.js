@@ -1,7 +1,7 @@
 if (typeof kotlin === 'undefined') {
-  throw new Error("Error loading module 'teleguide-web'. Its dependency 'kotlin' was not found. Please, check whether 'kotlin' is loaded prior to 'teleguide-web'.");
+  throw new Error("Error loading module 'teleguide'. Its dependency 'kotlin' was not found. Please, check whether 'kotlin' is loaded prior to 'teleguide'.");
 }
-this['teleguide-web'] = function (_, Kotlin) {
+var teleguide = function (_, Kotlin) {
   'use strict';
   var Kind_CLASS = Kotlin.Kind.CLASS;
   var experimental = Kotlin.kotlin.coroutines.experimental;
@@ -962,6 +962,6 @@ this['teleguide-web'] = function (_, Kotlin) {
   rawGamma = 0.0;
   interval = -1;
   main([]);
-  Kotlin.defineModule('teleguide-web', _);
+  Kotlin.defineModule('teleguide', _);
   return _;
-}(typeof this['teleguide-web'] === 'undefined' ? {} : this['teleguide-web'], kotlin);
+}(typeof teleguide === 'undefined' ? {} : teleguide, kotlin);
