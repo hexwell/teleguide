@@ -4,23 +4,26 @@ if (typeof kotlin === 'undefined') {
 var teleguide = function (_, Kotlin) {
   'use strict';
   var Kind_CLASS = Kotlin.Kind.CLASS;
-  var experimental = Kotlin.kotlin.coroutines.experimental;
+  var coroutines = Kotlin.kotlin.coroutines;
   var Unit = Kotlin.kotlin.Unit;
-  var Continuation = Kotlin.kotlin.coroutines.experimental.Continuation;
-  var startCoroutine = Kotlin.kotlin.coroutines.experimental.startCoroutine_xtwlez$;
-  var COROUTINE_SUSPENDED = Kotlin.kotlin.coroutines.experimental.intrinsics.COROUTINE_SUSPENDED;
-  var CoroutineImpl = Kotlin.kotlin.coroutines.experimental.CoroutineImpl;
+  var Continuation = Kotlin.kotlin.coroutines.Continuation;
+  var startCoroutine = Kotlin.kotlin.coroutines.startCoroutine_x18nsh$;
+  var COROUTINE_SUSPENDED = Kotlin.kotlin.coroutines.intrinsics.COROUTINE_SUSPENDED;
+  var CoroutineImpl = Kotlin.kotlin.coroutines.CoroutineImpl;
   var getCallableRef = Kotlin.getCallableRef;
   var throwUPAE = Kotlin.throwUPAE;
   var ensureNotNull = Kotlin.ensureNotNull;
   var throwCCE = Kotlin.throwCCE;
   var toString = Kotlin.toString;
-  var chunked = Kotlin.kotlin.text.chunked_94bcnn$;
+  var toTypedArray = Kotlin.kotlin.collections.toTypedArray_964n91$;
   var Throwable = Error;
   var Kind_OBJECT = Kotlin.Kind.OBJECT;
   var EventListener = Kotlin.org.w3c.dom.events.EventListener_gbr1zf$;
+  var round = Kotlin.kotlin.math.round_14dthe$;
   var numberToInt = Kotlin.numberToInt;
   var equals = Kotlin.equals;
+  var toByte = Kotlin.toByte;
+  var toByteArray = Kotlin.kotlin.collections.toByteArray_kdx1v$;
   function BluetoothScanFilters(services) {
     this.services = services;
   }
@@ -46,13 +49,14 @@ var teleguide = function (_, Kotlin) {
   }
   Object.defineProperty(launch$ObjectLiteral.prototype, 'context', {
     get: function () {
-      return experimental.EmptyCoroutineContext;
+      return coroutines.EmptyCoroutineContext;
     }
   });
-  launch$ObjectLiteral.prototype.resume_11rb$ = function (value) {
-  };
-  launch$ObjectLiteral.prototype.resumeWithException_tcv7n7$ = function (exception) {
-    console.log('Coroutine failed: ' + exception);
+  launch$ObjectLiteral.prototype.resumeWith_tl1gpc$ = function (result) {
+    var tmp$;
+    if ((tmp$ = result.exceptionOrNull()) != null) {
+      console.log('Coroutine failed: ' + tmp$);
+    }
   };
   launch$ObjectLiteral.$metadata$ = {
     kind: Kind_CLASS,
@@ -61,25 +65,23 @@ var teleguide = function (_, Kotlin) {
   function launch(block) {
     startCoroutine(block, new launch$ObjectLiteral());
   }
+  var Result = Kotlin.kotlin.Result;
   function delay$lambda(closure$ms) {
     return function (continuation) {
       window.setTimeout(getCallableRef('resume', function ($receiver, value) {
-        return $receiver.resume_11rb$(Unit), Unit;
+        $receiver.resumeWith_tl1gpc$(new Result(Unit));
+        return Unit;
       }.bind(null, continuation)), closure$ms);
       return Unit;
     };
   }
-  var SafeContinuation_init = Kotlin.kotlin.coroutines.experimental.SafeContinuation_init_n4f53e$;
+  var intercepted = Kotlin.kotlin.coroutines.intrinsics.intercepted_f9mg25$;
+  var SafeContinuation_init = Kotlin.kotlin.coroutines.SafeContinuation_init_wj8d80$;
   function suspendCoroutine$lambda(closure$block) {
     return function (c) {
-      var safe = SafeContinuation_init(c);
+      var safe = SafeContinuation_init(intercepted(c));
       closure$block(safe);
-      return safe.getResult();
-    };
-  }
-  function suspendCoroutineOrReturn$lambda(closure$block) {
-    return function (cont) {
-      return closure$block(cont.facade);
+      return safe.getOrThrow();
     };
   }
   function delay(ms_0, continuation_0, suspended) {
@@ -107,7 +109,7 @@ var teleguide = function (_, Kotlin) {
         switch (this.state_0) {
           case 0:
             this.state_0 = 2;
-            this.result_0 = suspendCoroutineOrReturn$lambda(suspendCoroutine$lambda(delay$lambda(this.local$ms)))(this);
+            this.result_0 = suspendCoroutine$lambda(delay$lambda(this.local$ms))(this);
             if (this.result_0 === COROUTINE_SUSPENDED)
               return COROUTINE_SUSPENDED;
             continue;
@@ -134,13 +136,14 @@ var teleguide = function (_, Kotlin) {
   };
   function await$lambda$lambda(closure$cont) {
     return function (it) {
-      closure$cont.resume_11rb$(it);
+      closure$cont.resumeWith_tl1gpc$(new Result(it));
       return Unit;
     };
   }
+  var createFailure = Kotlin.kotlin.createFailure_tcv7n7$;
   function await$lambda$lambda_0(closure$cont) {
     return function (it) {
-      closure$cont.resumeWithException_tcv7n7$(it);
+      closure$cont.resumeWith_tl1gpc$(new Result(createFailure(it)));
       return Unit;
     };
   }
@@ -152,14 +155,9 @@ var teleguide = function (_, Kotlin) {
   }
   function suspendCoroutine$lambda_0(closure$block) {
     return function (c) {
-      var safe = SafeContinuation_init(c);
+      var safe = SafeContinuation_init(intercepted(c));
       closure$block(safe);
-      return safe.getResult();
-    };
-  }
-  function suspendCoroutineOrReturn$lambda_0(closure$block) {
-    return function (cont) {
-      return closure$block(cont.facade);
+      return safe.getOrThrow();
     };
   }
   function await_0($receiver_0, continuation_0, suspended) {
@@ -187,7 +185,7 @@ var teleguide = function (_, Kotlin) {
         switch (this.state_0) {
           case 0:
             this.state_0 = 2;
-            this.result_0 = suspendCoroutineOrReturn$lambda_0(suspendCoroutine$lambda_0(await$lambda(this.local$$receiver)))(this);
+            this.result_0 = suspendCoroutine$lambda_0(await$lambda(this.local$$receiver))(this);
             if (this.result_0 === COROUTINE_SUSPENDED)
               return COROUTINE_SUSPENDED;
             continue;
@@ -421,55 +419,39 @@ var teleguide = function (_, Kotlin) {
       }
      while (true);
   };
-  Device.prototype.send_61zpoe$ = function (data_0, continuation_0, suspended) {
-    var instance = new Coroutine$send_61zpoe$(this, data_0, continuation_0);
+  Device.prototype.send_fqrh44$ = function (data_0, continuation_0, suspended) {
+    var instance = new Coroutine$send_fqrh44$(this, data_0, continuation_0);
     if (suspended)
       return instance;
     else
       return instance.doResume(null);
   };
-  function Coroutine$send_61zpoe$($this, data_0, continuation_0) {
+  function Coroutine$send_fqrh44$($this, data_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
     this.$this = $this;
-    this.local$tmp$ = void 0;
-    this.local$textEncoder = void 0;
     this.local$data = data_0;
   }
-  Coroutine$send_61zpoe$.$metadata$ = {
+  Coroutine$send_fqrh44$.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
     interfaces: [CoroutineImpl]
   };
-  Coroutine$send_61zpoe$.prototype = Object.create(CoroutineImpl.prototype);
-  Coroutine$send_61zpoe$.prototype.constructor = Coroutine$send_61zpoe$;
-  Coroutine$send_61zpoe$.prototype.doResume = function () {
+  Coroutine$send_fqrh44$.prototype = Object.create(CoroutineImpl.prototype);
+  Coroutine$send_fqrh44$.prototype.constructor = Coroutine$send_fqrh44$;
+  Coroutine$send_fqrh44$.prototype.doResume = function () {
     do
       try {
         switch (this.state_0) {
           case 0:
-            this.local$textEncoder = new TextEncoder();
-            this.local$tmp$ = chunked(this.local$data, 20).iterator();
             this.state_0 = 2;
+            this.result_0 = await_0(this.$this.characteristic_0.writeValue(new Uint8Array(toTypedArray(this.local$data))), this);
+            if (this.result_0 === COROUTINE_SUSPENDED)
+              return COROUTINE_SUSPENDED;
             continue;
           case 1:
             throw this.exception_0;
           case 2:
-            if (!this.local$tmp$.hasNext()) {
-              this.state_0 = 4;
-              continue;
-            }
-
-            var chunk = this.local$tmp$.next();
-            this.state_0 = 3;
-            this.result_0 = await_0(this.$this.characteristic_0.writeValue(this.local$textEncoder.encode(chunk)), this);
-            if (this.result_0 === COROUTINE_SUSPENDED)
-              return COROUTINE_SUSPENDED;
-            continue;
-          case 3:
-            this.state_0 = 2;
-            continue;
-          case 4:
             return;
           default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
@@ -602,7 +584,6 @@ var teleguide = function (_, Kotlin) {
     this.RECONNECTION_BASE_DELAY_0 = 1000;
     this.SERVICE_UUID_0 = 57264;
     this.CHARACTERISTIC_UUID_0 = 57265;
-    this.MAX_CHARACTERISTIC_VALUE_LENGHT_0 = 20;
   }
   Device$Companion.$metadata$ = {
     kind: Kind_OBJECT,
@@ -651,10 +632,10 @@ var teleguide = function (_, Kotlin) {
   var rawBeta;
   var rawGamma;
   function get_beta() {
-    return numberToInt(-(rawBeta - baseBeta) * multiplier);
+    return numberToInt(round(-(rawBeta - 9) * multiplier));
   }
   function get_gamma() {
-    return numberToInt((rawGamma - baseGamma) * multiplier);
+    return numberToInt(round((rawGamma - baseGamma) * multiplier));
   }
   var interval;
   function main$lambda(it) {
@@ -662,6 +643,7 @@ var teleguide = function (_, Kotlin) {
     logToTerminal(it.toString());
     return Unit;
   }
+  var ArrayList_init = Kotlin.kotlin.collections.ArrayList_init_ww73n8$;
   function main$lambda$lambda$lambda$lambda(continuation_0, suspended) {
     var instance = new Coroutine$main$lambda$lambda$lambda$lambda(continuation_0);
     if (suspended)
@@ -686,8 +668,17 @@ var teleguide = function (_, Kotlin) {
         switch (this.state_0) {
           case 0:
             this.exceptionState_0 = 2;
+            var tmp$ = device;
+            var $receiver = new Int32Array([0, get_beta(), get_gamma(), 0]);
+            var destination = ArrayList_init($receiver.length);
+            var tmp$_0;
+            for (tmp$_0 = 0; tmp$_0 !== $receiver.length; ++tmp$_0) {
+              var item = $receiver[tmp$_0];
+              destination.add_11rb$(toByte(item));
+            }
+
             this.state_0 = 1;
-            this.result_0 = device.send_61zpoe$('0,' + get_beta() + ',' + get_gamma() + '@0;', this);
+            this.result_0 = tmp$.send_fqrh44$(toByteArray(destination), this);
             if (this.result_0 === COROUTINE_SUSPENDED)
               return COROUTINE_SUSPENDED;
             continue;
@@ -956,8 +947,8 @@ var teleguide = function (_, Kotlin) {
   isTerminalAutoscrolling = true;
   device = new Device();
   multiplier = 0.25;
-  baseBeta = 8.2;
-  baseGamma = 2.5;
+  baseBeta = 9;
+  baseGamma = -1.9;
   rawBeta = 0.0;
   rawGamma = 0.0;
   interval = -1;

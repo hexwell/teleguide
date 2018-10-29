@@ -1,6 +1,7 @@
 package net.hexwell.teleguide.helpers
 
 import net.hexwell.teleguide.externals.*
+import org.khronos.webgl.Uint8Array
 import org.w3c.dom.events.Event
 import org.w3c.dom.events.EventListener
 import kotlin.browser.window
@@ -56,11 +57,8 @@ class Device {
         this.innerConnect()
     }
 
-    suspend fun send(data: String) {
-        val textEncoder = TextEncoder()
-
-        for (chunk: String in data.chunked(Device.MAX_CHARACTERISTIC_VALUE_LENGHT))
-            this.characteristic.writeValue(textEncoder.encode(chunk)).await()
+    suspend fun send(data: ByteArray) {
+        this.characteristic.writeValue(Uint8Array(data.toTypedArray())).await()
     }
 
     fun disconnect() {
@@ -100,7 +98,5 @@ class Device {
 
         private const val SERVICE_UUID = 0xDFB0
         private const val CHARACTERISTIC_UUID = 0xDFB1
-
-        private const val MAX_CHARACTERISTIC_VALUE_LENGHT = 20
     }
 }

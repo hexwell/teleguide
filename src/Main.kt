@@ -40,14 +40,14 @@ val device = Device()
 
 const val multiplier = .25
 
-const val baseBeta = 8.2
-const val baseGamma = 2.5
+const val baseBeta = 9
+const val baseGamma = -1.9
 
 var rawBeta = .0
 var rawGamma = .0
 
-val beta: Int get() = (-(rawBeta - baseBeta) * multiplier).toInt()
-val gamma: Int get() = ((rawGamma - baseGamma) * multiplier).toInt()
+val beta: Int get() = kotlin.math.round(-(rawBeta - baseBeta) * multiplier).toInt()
+val gamma: Int get() = kotlin.math.round((rawGamma - baseGamma) * multiplier).toInt()
 
 var interval: Int = -1
 
@@ -73,7 +73,7 @@ fun main(args: Array<String>) {
             interval = window.setInterval({
                 launch {
                     try {
-                        device.send("0,$beta,$gamma@0;")
+                        device.send(intArrayOf(0, beta, gamma, 0).map(Int::toByte).toByteArray())
                     } catch (e: Throwable) {
                         logToTerminal(e.toString())
                     }
