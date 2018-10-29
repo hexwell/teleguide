@@ -2,6 +2,7 @@ package net.hexwell.teleguide
 
 import net.hexwell.teleguide.externals.DEVICEORIENTATION
 import net.hexwell.teleguide.externals.DeviceOrientationEvent
+import net.hexwell.teleguide.externals.NoSleep
 import net.hexwell.teleguide.helpers.Device
 import net.hexwell.teleguide.helpers.launch
 import org.w3c.dom.HTMLButtonElement
@@ -9,6 +10,8 @@ import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLElement
 import kotlin.browser.document
 import kotlin.browser.window
+
+val wakeLock = NoSleep()
 
 val deviceNameLabel: HTMLDivElement = document.getElementById("device-name") as HTMLDivElement
 val connectButton: HTMLButtonElement = document.getElementById("connect") as HTMLButtonElement
@@ -58,6 +61,8 @@ fun main(args: Array<String>) {
     }
 
     connectButton.addEventListener("click", {
+        wakeLock.enable()
+
         launch {
             try {
                 device.connect()

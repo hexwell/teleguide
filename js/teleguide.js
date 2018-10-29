@@ -606,6 +606,7 @@ var teleguide = function (_, Kotlin) {
     simpleName: 'Device',
     interfaces: []
   };
+  var wakeLock;
   var deviceNameLabel;
   var connectButton;
   var disconnectButton;
@@ -792,6 +793,7 @@ var teleguide = function (_, Kotlin) {
      while (true);
   };
   function main$lambda_0(it) {
+    wakeLock.enable();
     launch(main$lambda$lambda);
     return Unit;
   }
@@ -844,6 +846,11 @@ var teleguide = function (_, Kotlin) {
     get: Device$Companion_getInstance
   });
   package$helpers.Device = Device;
+  Object.defineProperty(package$teleguide, 'wakeLock', {
+    get: function () {
+      return wakeLock;
+    }
+  });
   Object.defineProperty(package$teleguide, 'deviceNameLabel', {
     get: function () {
       return deviceNameLabel;
@@ -937,6 +944,7 @@ var teleguide = function (_, Kotlin) {
   package$teleguide.main_kand9s$ = main;
   GATTSERVERDISCONNECTED = 'gattserverdisconnected';
   DEVICEORIENTATION = 'deviceorientation';
+  wakeLock = new NoSleep();
   var tmp$, tmp$_0, tmp$_1, tmp$_2;
   deviceNameLabel = Kotlin.isType(tmp$ = document.getElementById('device-name'), HTMLDivElement) ? tmp$ : throwCCE();
   connectButton = Kotlin.isType(tmp$_0 = document.getElementById('connect'), HTMLButtonElement) ? tmp$_0 : throwCCE();
