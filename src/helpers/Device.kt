@@ -4,7 +4,9 @@ import net.hexwell.teleguide.externals.*
 import org.w3c.dom.events.Event
 import org.w3c.dom.events.EventListener
 import kotlin.browser.window
-import kotlin.coroutines.experimental.suspendCoroutine
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 import kotlin.js.Promise
 
 suspend fun <T> Promise<T>.await(): T = suspendCoroutine { cont ->
