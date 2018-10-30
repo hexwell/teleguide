@@ -4,7 +4,7 @@ toolbox.precache([
     'css/styles.css',
     'js/lib/kotlin.js',
     'js/companion.js',
-    'js/teleguide-web.js',
+    'js/teleguide.js',
     'index.html',
 ]);
 
