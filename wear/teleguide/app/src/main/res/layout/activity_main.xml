@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             tools:context="net.hexwell.teleguide.wear.MainActivity"
+                                             tools:deviceIds="wear">
+
+    <Spinner
+            android:id="@+id/ble_device_s"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toStartOf="@+id/scan_b"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toTopOf="@+id/channel_s"/>
+
+    <Spinner
+            android:id="@+id/channel_s"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toStartOf="@+id/calibrate_b"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@+id/ble_device_s"/>
+
+    <ImageButton
+            android:id="@+id/calibrate_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/calibrate"
+            android:src="@drawable/ic_calibrate"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scan_b" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="20dp"/>
+
+    <ImageButton
+            android:id="@+id/scan_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/scan"
+            android:src="@drawable/ic_bluetooth_searching"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/calibrate_b" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="20dp"/>
+
+</android.support.constraint.ConstraintLayout>

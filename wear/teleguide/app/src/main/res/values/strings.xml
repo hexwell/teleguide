@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Teleguide</string>
+
+    <string name="permission_needed">Permission needed for Bluetooth</string>
+
+    <string name="calibrate">CALIBRATE</string>
+    <string name="scan">SCAN</string>
+
+    <string-array name="channels">
+        <item>CH 1</item>
+        <item>CH 2</item>
+        <item>CH 3</item>
+        <item>CH 4</item>
+    </string-array>
+</resources>
