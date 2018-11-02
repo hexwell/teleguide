@@ -10,7 +10,9 @@ external class BluetoothRemoteGATTCharacteristic : EventTarget {
 }
 
 external interface BluetoothRemoteGATTService {
-    fun getCharacteristic(characteristic: dynamic): Promise<BluetoothRemoteGATTCharacteristic>
+    val uuid: String
+
+    fun getCharacteristic(characteristic: String?): Promise<BluetoothRemoteGATTCharacteristic>
 }
 
 external interface BluetoothRemoteGATTServer {
@@ -18,7 +20,8 @@ external interface BluetoothRemoteGATTServer {
 
     fun connect(): Promise<BluetoothRemoteGATTServer>
     fun disconnect()
-    fun getPrimaryService(service: dynamic): Promise<BluetoothRemoteGATTService>
+    fun getPrimaryServices(): Promise<Array<BluetoothRemoteGATTService>>
+    fun getPrimaryService(service: String?): Promise<BluetoothRemoteGATTService>
 }
 
 external class BluetoothDevice : EventTarget {
@@ -27,16 +30,15 @@ external class BluetoothDevice : EventTarget {
 }
 
 @Suppress("unused")
-class BluetoothScanFilters(val services: Array<dynamic>)
+class BluetoothScanFilters(val services: Array<String>)
 
 @Suppress("unused")
-class RequestDeviceOptions(val filters: Array<BluetoothScanFilters> = emptyArray())
+class RequestDeviceOptions(val filters: Array<BluetoothScanFilters>)
 
 abstract external class Bluetooth : EventTarget {
-    fun requestDevice(options: RequestDeviceOptions = definedExternally): Promise<BluetoothDevice>
+    fun requestDevice(options: RequestDeviceOptions): Promise<BluetoothDevice>
 }
 
-// Navigator with bluetooth property
 abstract external class Navigator : Navigator {
     val bluetooth: Bluetooth
 }

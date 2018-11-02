@@ -61,17 +61,15 @@ button i.material-icons {
 .terminal div.in {
     color: #2196F3; }
 
-.send-form {
+.bottom-toolbar {
     display: flex;
     flex-shrink: 0; }
-.send-form input {
-    background: none;
-    border: none;
-    color: rgba(0, 0, 0, 0.87);
-    flex-grow: 1;
-    font: normal 16px/1.5 'Roboto Mono', monospace;
-    padding: 0 8px; }
-.send-form input::placeholder {
-    color: rgba(0, 0, 0, 0.54); }
-.send-form button {
+.bottom-toolbar select {
+    background: white;
+    border-color: white;
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+    flex-shrink: 0; }
+.bottom-toolbar div {
+    flex-grow: 1; }
+.bottom-toolbar button {
     flex-shrink: 0; }

@@ -3,7 +3,7 @@ package net.hexwell.teleguide.helpers
 import kotlin.browser.window
 import kotlin.coroutines.*
 
-fun launch(block: suspend () -> Unit) {
+internal fun launch(block: suspend () -> Unit) {
     block.startCoroutine(object : Continuation<Unit> {
         override val context: CoroutineContext get() = EmptyCoroutineContext
 
@@ -13,6 +13,6 @@ fun launch(block: suspend () -> Unit) {
     })
 }
 
-suspend fun delay(ms: Int): Unit = suspendCoroutine { continuation ->
+internal suspend fun delay(ms: Int): Unit = suspendCoroutine { continuation ->
     window.setTimeout(continuation::resume, ms)
 }

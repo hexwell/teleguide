@@ -5,37 +5,28 @@ import org.khronos.webgl.Uint8Array
 import org.w3c.dom.events.Event
 import org.w3c.dom.events.EventListener
 import kotlin.browser.window
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
-import kotlin.js.Promise
 
-suspend fun <T> Promise<T>.await(): T = suspendCoroutine { cont ->
-    this.then({ cont.resume(it) }, { cont.resumeWithException(it) })
-}
-
-class Device {
+internal class Device(private val log: (Any) -> Unit = { console.log(it) }) {
     private lateinit var device: BluetoothDevice
     private lateinit var characteristic: BluetoothRemoteGATTCharacteristic
     private val disconnectionListener = EventListener(this::onDisconnected)
 
-    val name: String get() = if (this.device.name == null) "" else this.device.name!!
+    internal val name: String get() = if (this.device.name == null) "" else this.device.name!!
 
-    var logger: (Any) -> Unit = { console.log(it) }
-
-    private fun log(o: Any) = this.logger(o)
+    private var connected = false
 
     private suspend fun request() {
         this.log("Requesting device...")
 
         this.device = (window.navigator as Navigator).bluetooth.requestDevice(
             RequestDeviceOptions(
-                filters = arrayOf(
-                    BluetoothScanFilters(
-                        services = arrayOf(SERVICE_UUID)
-                    )
-                )
+                filters = UUIDS
+                    .keys
+                    .map { arrayOf(it) }
+                    .map(::BluetoothScanFilters)
+                    .toTypedArray()
             )
+
         ).await()
 
         device.addEventListener(GATTSERVERDISCONNECTED, this.disconnectionListener)
@@ -44,34 +35,58 @@ class Device {
     private suspend fun innerConnect() {
         this.device.gatt!!.connect().await()
 
-        val service: BluetoothRemoteGATTService =
-            this.device.gatt!!.getPrimaryService(Device.SERVICE_UUID).await()
-        this.characteristic =
-                service.getCharacteristic(Device.CHARACTERISTIC_UUID).await()
+        if (this.device.gatt?.connected == true)
+            this.connected = true
+
+        this.characteristic = this
+            .device
+            .gatt!!
+            .run {
+                getPrimaryService(
+                    getPrimaryServices()
+                        .await()
+                        .map(BluetoothRemoteGATTService::uuid)
+                        .toSet()
+                        .intersect(UUIDS.keys)
+                        .singleOrNull()
+                )
+            }
+            .await()
+            .run {
+                getCharacteristic(UUIDS[uuid])
+            }
+            .await()
 
         this.log("'${this.device.name}' connected")
     }
 
-    suspend fun connect() {
+    internal suspend fun connect() {
         this.request()
         this.innerConnect()
     }
 
-    suspend fun send(data: ByteArray) {
-        this.characteristic.writeValue(Uint8Array(data.toTypedArray())).await()
+    internal suspend fun send(data: ByteArray) {
+        if (this.connected)
+            this.characteristic.writeValue(Uint8Array(data.toTypedArray())).await()
     }
 
-    fun disconnect() {
-        this.log("Disconnecting from '${this.device.name}'...")
+    internal fun disconnect() {
+        if (this.connected) {
+            connected = false
 
-        this.device.removeEventListener(GATTSERVERDISCONNECTED, this.disconnectionListener)
-        this.device.gatt!!.disconnect()
+            this.log("Disconnecting from '${this.device.name}'...")
 
-        this.log("'${this.device.name}' disconnected")
+            this.device.removeEventListener(GATTSERVERDISCONNECTED, this.disconnectionListener)
+            this.device.gatt!!.disconnect()
+
+            this.log("'${this.device.name}' disconnected")
+        }
     }
 
     @Suppress("UNUSED_PARAMETER")
     private fun onDisconnected(event: Event) {
+        connected = false
+
         launch {
             this.log("'${this.device.name}' disconnected")
 
@@ -96,7 +111,8 @@ class Device {
         private const val RECONNECTION_ATTEMPTS = 5
         private const val RECONNECTION_BASE_DELAY = 1000
 
-        private const val SERVICE_UUID = 0xDFB0
-        private const val CHARACTERISTIC_UUID = 0xDFB1
+        private val UUIDS = mapOf(
+            "0000dfb0-0000-1000-8000-00805f9b34fb" to "0000dfb1-0000-1000-8000-00805f9b34fb"
+        )
     }
 }

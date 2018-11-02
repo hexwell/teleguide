@@ -1,35 +1,38 @@
 package net.hexwell.teleguide
 
-import net.hexwell.teleguide.externals.DEVICEORIENTATION
-import net.hexwell.teleguide.externals.DeviceOrientationEvent
+import net.hexwell.teleguide.externals.CLICK
 import net.hexwell.teleguide.externals.NoSleep
+import net.hexwell.teleguide.externals.SCROLL
 import net.hexwell.teleguide.helpers.Device
+import net.hexwell.teleguide.helpers.Orientation
 import net.hexwell.teleguide.helpers.launch
 import org.w3c.dom.HTMLButtonElement
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLElement
+import org.w3c.dom.HTMLSelectElement
 import kotlin.browser.document
 import kotlin.browser.window
 
-val wakeLock = NoSleep()
+private const val DEFAULT_DEVICE_NAME = "Teleguide"
 
-val deviceNameLabel: HTMLDivElement = document.getElementById("device-name") as HTMLDivElement
-val connectButton: HTMLButtonElement = document.getElementById("connect") as HTMLButtonElement
-val disconnectButton: HTMLButtonElement = document.getElementById("disconnect") as HTMLButtonElement
-val terminalContainer: HTMLDivElement = document.getElementById("terminal") as HTMLDivElement
+private val deviceNameLabel = document.getElementById("device-name") as HTMLDivElement
+private val connectButton = document.getElementById("connect") as HTMLButtonElement
+private val disconnectButton = document.getElementById("disconnect") as HTMLButtonElement
+private val terminalContainer = document.getElementById("terminal") as HTMLDivElement
+private val channelSelect = document.getElementById("channel") as HTMLSelectElement
+private val calibrateButton = document.getElementById("calibrate") as HTMLButtonElement
 
-const val defaultDeviceName = "Teleguide"
-val terminalAutoScrollingLimit: Int = terminalContainer.offsetHeight / 2
-var isTerminalAutoscrolling = true
+private val terminalAutoScrollingLimit: Int = terminalContainer.offsetHeight / 2
+private var isTerminalAutoscrolling = true
 
-fun scrollElement(element: HTMLElement) {
+private fun scrollElement(element: HTMLElement) {
     val scrollTop: Int = element.scrollHeight - element.offsetHeight
 
     if (scrollTop > 0)
         element.scrollTop = scrollTop.toDouble()
 }
 
-fun logToTerminal(message: String, type: String = "") {
+private fun logToTerminal(message: String, type: String = "") {
     terminalContainer.insertAdjacentHTML(
         "beforeend",
         "<div class=\"$type\">$message</div>"
@@ -39,29 +42,22 @@ fun logToTerminal(message: String, type: String = "") {
         scrollElement(terminalContainer)
 }
 
-val device = Device()
+private fun main(args: Array<String>) {
+    val wakeLock = NoSleep()
 
-const val multiplier = .25
-
-const val baseBeta = 9
-const val baseGamma = -1.9
-
-var rawBeta = .0
-var rawGamma = .0
-
-val beta: Int get() = kotlin.math.round(-(rawBeta - baseBeta) * multiplier).toInt()
-val gamma: Int get() = kotlin.math.round((rawGamma - baseGamma) * multiplier).toInt()
-
-var interval: Int = -1
-
-fun main(args: Array<String>) {
-    device.logger = {
+    val device = Device {
         console.log(it)
         logToTerminal(it.toString())
     }
 
-    connectButton.addEventListener("click", {
+    val orientation = Orientation()
+
+    var sendingInterval: Int = -1
+
+    connectButton.addEventListener(CLICK, {
         wakeLock.enable()
+
+        device.disconnect()
 
         launch {
             try {
@@ -71,14 +67,19 @@ fun main(args: Array<String>) {
             }
 
             deviceNameLabel.textContent = when (device.name) {
-                "" -> defaultDeviceName
+                "" -> DEFAULT_DEVICE_NAME
                 else -> device.name
             }
 
-            interval = window.setInterval({
+            sendingInterval = window.setInterval({
                 launch {
                     try {
-                        device.send(intArrayOf(0, beta, gamma, 0).map(Int::toByte).toByteArray())
+                        device.send(
+                            intArrayOf(
+                                *orientation.orientation,
+                                channelSelect.value.toInt()
+                            ).map(Int::toByte).toByteArray()
+                        )
                     } catch (e: Throwable) {
                         logToTerminal(e.toString())
                     }
@@ -87,24 +88,23 @@ fun main(args: Array<String>) {
         }
     })
 
-    disconnectButton.addEventListener("click", {
-        window.clearInterval(interval)
+    disconnectButton.addEventListener(CLICK, {
+        window.clearInterval(sendingInterval)
         device.disconnect()
 
-        deviceNameLabel.textContent = defaultDeviceName
+        deviceNameLabel.textContent = DEFAULT_DEVICE_NAME
+
+        wakeLock.disable()
     })
 
-    terminalContainer.addEventListener("scroll", {
+    terminalContainer.addEventListener(SCROLL, {
         val scrollTopOffset: Int =
             terminalContainer.scrollHeight - terminalContainer.offsetHeight - terminalAutoScrollingLimit
 
         isTerminalAutoscrolling = (scrollTopOffset < terminalContainer.scrollTop)
     })
 
-    window.addEventListener(DEVICEORIENTATION, {
-        it as DeviceOrientationEvent
-
-        rawBeta = it.beta!!
-        rawGamma = it.gamma!!
+    calibrateButton.addEventListener(CLICK, {
+        orientation.calibrate()
     })
 }
