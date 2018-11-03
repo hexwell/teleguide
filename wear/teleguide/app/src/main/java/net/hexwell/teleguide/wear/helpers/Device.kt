@@ -110,6 +110,8 @@ internal class Device(
 
     private val outgoing: BlockingQueue<ByteArray> = LinkedBlockingQueue()
 
+    private var connected = false
+
     init { thread(isDaemon = true, name = "bluetooth_sender") {
         while (true) {
             val tx = tx
@@ -146,6 +148,20 @@ internal class Device(
                 this.tx = null
 
                 Log.d(TAG, "Disconnected from '${device.name}'")
+
+                if (connected)
+                    thread(isDaemon = true, name = "reconnector") {
+                        for (attempt: Int in 1..RECONNECTION_ATTEMPTS) {
+                            Log.d(TAG, "[Attempt $attempt] Trying to reconnect...")
+
+                            this.connect()
+
+                            if (tx != null)
+                                return@thread
+
+                            Thread.sleep(RECONNECTION_BASE_DELAY * attempt)
+                        }
+                    }
             }
         }
     }
@@ -166,11 +182,15 @@ internal class Device(
                     getCharacteristic(DeviceScanner.UUIDS[uuid])
                 }
 
+        this.connected = true
+
         Log.d(TAG, "Connected to '${device.name}'")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     fun disconnect() {
+        connected = false
+
         Log.d(TAG, "Disconnecting from '${device.name}'...")
 
         this.gatt?.disconnect()
@@ -188,6 +208,9 @@ internal class Device(
     }
 
     companion object {
+        private const val RECONNECTION_ATTEMPTS = 5
+        private const val RECONNECTION_BASE_DELAY = 1000L
+
         private val TAG = Device::class.java.name
     }
 }
