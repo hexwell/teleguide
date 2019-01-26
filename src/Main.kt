@@ -42,7 +42,7 @@ private fun logToTerminal(message: String, type: String = "") {
         scrollElement(terminalContainer)
 }
 
-private fun main(args: Array<String>) {
+private fun main() {
     val wakeLock = NoSleep()
 
     val device = Device {

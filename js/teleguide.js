@@ -81,13 +81,6 @@ var teleguide = function (_, Kotlin) {
       return safe.getOrThrow();
     };
   }
-  function await_0($receiver_0, continuation_0, suspended) {
-    var instance = new Coroutine$await($receiver_0, continuation_0);
-    if (suspended)
-      return instance;
-    else
-      return instance.doResume(null);
-  }
   function Coroutine$await($receiver_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
@@ -131,6 +124,13 @@ var teleguide = function (_, Kotlin) {
       }
      while (true);
   };
+  function await_0($receiver_0, continuation_0, suspended) {
+    var instance = new Coroutine$await($receiver_0, continuation_0);
+    if (suspended)
+      return instance;
+    else
+      return instance.doResume(null);
+  }
   function launch$ObjectLiteral() {
   }
   Object.defineProperty(launch$ObjectLiteral.prototype, 'context', {
@@ -166,13 +166,6 @@ var teleguide = function (_, Kotlin) {
       closure$block(safe);
       return safe.getOrThrow();
     };
-  }
-  function delay(ms_0, continuation_0, suspended) {
-    var instance = new Coroutine$delay(ms_0, continuation_0);
-    if (suspended)
-      return instance;
-    else
-      return instance.doResume(null);
   }
   function Coroutine$delay(ms_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
@@ -217,6 +210,13 @@ var teleguide = function (_, Kotlin) {
       }
      while (true);
   };
+  function delay(ms_0, continuation_0, suspended) {
+    var instance = new Coroutine$delay(ms_0, continuation_0);
+    if (suspended)
+      return instance;
+    else
+      return instance.doResume(null);
+  }
   function Device(log) {
     Device$Companion_getInstance();
     if (log === void 0)
@@ -257,13 +257,6 @@ var teleguide = function (_, Kotlin) {
   var collectionSizeOrDefault = Kotlin.kotlin.collections.collectionSizeOrDefault_ba2ldo$;
   var ArrayList_init = Kotlin.kotlin.collections.ArrayList_init_ww73n8$;
   var copyToArray = Kotlin.kotlin.collections.copyToArray;
-  Device.prototype.request_0 = function (continuation_0, suspended) {
-    var instance = new Coroutine$request_0(this, continuation_0);
-    if (suspended)
-      return instance;
-    else
-      return instance.doResume(null);
-  };
   function Coroutine$request_0($this, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
@@ -328,8 +321,8 @@ var teleguide = function (_, Kotlin) {
       }
      while (true);
   };
-  Device.prototype.innerConnect_0 = function (continuation_0, suspended) {
-    var instance = new Coroutine$innerConnect_0(this, continuation_0);
+  Device.prototype.request_0 = function (continuation_0, suspended) {
+    var instance = new Coroutine$request_0(this, continuation_0);
     if (suspended)
       return instance;
     else
@@ -414,8 +407,8 @@ var teleguide = function (_, Kotlin) {
       }
      while (true);
   };
-  Device.prototype.connect_8be2vx$ = function (continuation_0, suspended) {
-    var instance = new Coroutine$connect_8be2vx$(this, continuation_0);
+  Device.prototype.innerConnect_0 = function (continuation_0, suspended) {
+    var instance = new Coroutine$innerConnect_0(this, continuation_0);
     if (suspended)
       return instance;
     else
@@ -469,8 +462,8 @@ var teleguide = function (_, Kotlin) {
       }
      while (true);
   };
-  Device.prototype.send_ma41of$ = function (data_0, continuation_0, suspended) {
-    var instance = new Coroutine$send_ma41of$(this, data_0, continuation_0);
+  Device.prototype.connect_8be2vx$ = function (continuation_0, suspended) {
+    var instance = new Coroutine$connect_8be2vx$(this, continuation_0);
     if (suspended)
       return instance;
     else
@@ -529,6 +522,13 @@ var teleguide = function (_, Kotlin) {
       }
      while (true);
   };
+  Device.prototype.send_ma41of$ = function (data_0, continuation_0, suspended) {
+    var instance = new Coroutine$send_ma41of$(this, data_0, continuation_0);
+    if (suspended)
+      return instance;
+    else
+      return instance.doResume(null);
+  };
   Device.prototype.disconnect_8be2vx$ = function () {
     if (this.connected_0) {
       this.connected_0 = false;
@@ -538,15 +538,6 @@ var teleguide = function (_, Kotlin) {
       this.log_0("'" + toString(this.device_0.name) + "' disconnected");
     }
   };
-  function Device$onDisconnected$lambda(this$Device_0) {
-    return function (continuation_0, suspended) {
-      var instance = new Coroutine$Device$onDisconnected$lambda(this$Device_0, continuation_0);
-      if (suspended)
-        return instance;
-      else
-        return instance.doResume(null);
-    };
-  }
   function Coroutine$Device$onDisconnected$lambda(this$Device_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 8;
@@ -638,6 +629,15 @@ var teleguide = function (_, Kotlin) {
       }
      while (true);
   };
+  function Device$onDisconnected$lambda(this$Device_0) {
+    return function (continuation_0, suspended) {
+      var instance = new Coroutine$Device$onDisconnected$lambda(this$Device_0, continuation_0);
+      if (suspended)
+        return instance;
+      else
+        return instance.doResume(null);
+    };
+  }
   Device.prototype.onDisconnected_0 = function (event) {
     this.connected_0 = false;
     launch(Device$onDisconnected$lambda(this));
@@ -771,15 +771,6 @@ var teleguide = function (_, Kotlin) {
     logToTerminal(it.toString());
     return Unit;
   }
-  function main$lambda$lambda$lambda$lambda(closure$device_0, closure$orientation_0) {
-    return function (continuation_0, suspended) {
-      var instance = new Coroutine$main$lambda$lambda$lambda$lambda(closure$device_0, closure$orientation_0, continuation_0);
-      if (suspended)
-        return instance;
-      else
-        return instance.doResume(null);
-    };
-  }
   function Coroutine$main$lambda$lambda$lambda$lambda(closure$device_0, closure$orientation_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 5;
@@ -848,19 +839,19 @@ var teleguide = function (_, Kotlin) {
       }
      while (true);
   };
-  function main$lambda$lambda$lambda(closure$device, closure$orientation) {
-    return function () {
-      launch(main$lambda$lambda$lambda$lambda(closure$device, closure$orientation));
-      return Unit;
-    };
-  }
-  function main$lambda$lambda(closure$device_0, closure$orientation_0, closure$sendingInterval_0) {
+  function main$lambda$lambda$lambda$lambda(closure$device_0, closure$orientation_0) {
     return function (continuation_0, suspended) {
-      var instance = new Coroutine$main$lambda$lambda(closure$device_0, closure$orientation_0, closure$sendingInterval_0, continuation_0);
+      var instance = new Coroutine$main$lambda$lambda$lambda$lambda(closure$device_0, closure$orientation_0, continuation_0);
       if (suspended)
         return instance;
       else
         return instance.doResume(null);
+    };
+  }
+  function main$lambda$lambda$lambda(closure$device, closure$orientation) {
+    return function () {
+      launch(main$lambda$lambda$lambda$lambda(closure$device, closure$orientation));
+      return Unit;
     };
   }
   function Coroutine$main$lambda$lambda(closure$device_0, closure$orientation_0, closure$sendingInterval_0, continuation_0) {
@@ -929,6 +920,15 @@ var teleguide = function (_, Kotlin) {
       }
      while (true);
   };
+  function main$lambda$lambda(closure$device_0, closure$orientation_0, closure$sendingInterval_0) {
+    return function (continuation_0, suspended) {
+      var instance = new Coroutine$main$lambda$lambda(closure$device_0, closure$orientation_0, closure$sendingInterval_0, continuation_0);
+      if (suspended)
+        return instance;
+      else
+        return instance.doResume(null);
+    };
+  }
   function main$lambda_0(closure$wakeLock, closure$device, closure$orientation, closure$sendingInterval) {
     return function (it) {
       closure$wakeLock.enable();
@@ -957,7 +957,7 @@ var teleguide = function (_, Kotlin) {
       return Unit;
     };
   }
-  function main(args) {
+  function main() {
     var wakeLock = new NoSleep();
     var device = new Device(main$lambda);
     var orientation = new Orientation();
@@ -1019,7 +1019,7 @@ var teleguide = function (_, Kotlin) {
   calibrateButton = Kotlin.isType(tmp$_4 = document.getElementById('calibrate'), HTMLButtonElement) ? tmp$_4 : throwCCE();
   terminalAutoScrollingLimit = terminalContainer.offsetHeight / 2 | 0;
   isTerminalAutoscrolling = true;
-  main([]);
+  main();
   Kotlin.defineModule('teleguide', _);
   return _;
 }(typeof teleguide === 'undefined' ? {} : teleguide, kotlin);
