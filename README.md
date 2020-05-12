@@ -2,6 +2,10 @@
 
 Progressive Web App and Android Wear OS app to control LEGO Power Functions via BLE with your smartphone or smartwatch
 
+![screenshot](res/ss.jpg)
+![hardware](res/pic.jpg)
+![demo](res/demo.jpg)
+
 ## Requirements
 
 - A device running a modern browser with Web Bluetooth support and a gyroscope.
