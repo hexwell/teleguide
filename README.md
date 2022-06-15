@@ -27,6 +27,11 @@ You'll need a gateway to forward the commands to the Power Functions receiver. F
 
 - [LEGOPowerFunctions](https://github.com/schultzy51/LEGOPowerFunctions)
 
+## References
+
+Inspired by:
+- [Web-Bluetooth-Terminal](https://github.com/loginov-rocks/Web-Bluetooth-Terminal)
+
 ## Authors
 
 - **Ettore Forigo** - [Hexwell](https://github.com/Hexwell)
